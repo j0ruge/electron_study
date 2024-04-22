@@ -3,3 +3,5 @@
 ## Projects
 
 - [videoinfo](./videoinfo/)
+
+- [Master Electron - Course Code](./master-electron/README.md)
