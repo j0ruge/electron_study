@@ -1,0 +1,32 @@
+{
+  "name": "electronapp",
+  "version": "1.0.0",
+  "homepage": ".",
+  "description": "",
+  "main": "main.js",
+  "scripts":
+  {
+    "dev:watch": "npx electronmon --trace-warnings ."
+  },
+  "keywords": [
+    "electron",
+    "reactjs",
+    "typescript"
+  ],
+  "author": "GabirU Rider",
+  "license": "MIT",
+  "dependencies":
+  {
+    "electron": "^30.0.2"
+  },
+  "devDependencies":
+  {
+    "electronmon": "^2.0.3"
+  },
+  "electronmon": {
+    "patterns": [
+      "!node_modules/**",
+      "!app/node_modules/**"
+    ]
+  }
+}
