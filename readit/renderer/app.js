@@ -1,40 +1,14 @@
 // Modules
 const {ipcRenderer} = require('electron');
+const items = require('./items');
+const { toggleModalButtons, showModal } = require('./modal')
 
 // DOM Nodes
-let showModal = document.getElementById('show-modal');
+//let showModal = document.getElementById('show-modal');
 let closeModal = document.getElementById('close-modal');
 let modal = document.getElementById('modal');
 let addItem = document.getElementById('add-item');
 let itemUrl = document.getElementById('url');
-
-// Disable & Enable modal buttons
-const toggleModalButtons = () =>
-{
-    // Check state of buttons
-    if(addItem.disabled === true)
-    {
-        addItem.disabled = false;
-        addItem.style.opacity = 1;
-        addItem.innerText = 'Add Item';
-        closeModal.style.display = 'inline';
-    }
-    else
-    {
-        addItem.disabled = true;
-        addItem.style.opacity = 0.5;
-        addItem.innerText = 'Adding...';
-        closeModal.style.display = 'none';
-    }
-};
-
-
-// Show modal
-showModal.addEventListener('click', () =>
- {
-    modal.style.display = 'flex';
-    itemUrl.focus();
-});
 
 // Close modal
 closeModal.addEventListener('click', () =>
@@ -59,10 +33,10 @@ addItem.addEventListener('click', () =>
 
 
 // Listen for new item from main process
-ipcRenderer.on('new-item-success', (event, item) =>
+ipcRenderer.on('new-item-success', (event, newItem) =>
 {
     // Add item to "items" node
-    console.log(item);
+    items.addItem(newItem);
 
     // Enable buttons
     toggleModalButtons();
@@ -76,4 +50,28 @@ ipcRenderer.on('new-item-success', (event, item) =>
 itemUrl.addEventListener('keyup', (event) =>
 {
     if(event.key === 'Enter') addItem.click();
+});
+
+document.addEventListener("DOMContentLoaded", () =>
+{    
+   let button = document.getElementById("special-submit-button");
+    
+    button.addEventListener("click", function() {
+      button.classList.add("onclic");
+      setTimeout(validate, 250);
+    });
+  
+    function validate() {
+      setTimeout(function() {
+        button.classList.remove("onclic");
+        button.classList.add("validate");
+        setTimeout(callback, 450);
+      }, 2250);
+    }
+  
+    function callback() {
+      setTimeout(function() {
+        button.classList.remove("validate");
+      }, 1250);
+    }
 });

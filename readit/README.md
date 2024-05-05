@@ -8,3 +8,15 @@ Mantendo o estado das janelas.
 ```bash
 npm i electron-window-state
 ```
+
+## Testar
+
+[animation submit button](https://codepen.io/valentingalmand/pen/MYMZZK)
+
+[20 css buttons animations](https://dev.to/webdeasy/top-20-css-buttons-animations-f41)
+
+## Troubleshootings
+
+### Electron: jQuery is not defined
+
+[Electron: jQuery is not defined](https://stackoverflow.com/questions/32621988/electron-jquery-is-not-defined)

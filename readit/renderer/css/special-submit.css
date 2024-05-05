@@ -15,7 +15,8 @@
   text-align: center;
 }
 
-#special-submit-button {
+#special-submit-button
+{
   outline: none;
   height: 40px;
   text-align: center;
@@ -42,7 +43,8 @@
   content: "SUBMIT";
 }
 
-.onclic {
+.onclic
+{
   width: 40px;
   border-color: #bbbbbb;
   border-width: 3px;
@@ -51,7 +53,8 @@
   -webkit-animation: rotating 2s 0.25s linear infinite;
           animation: rotating 2s 0.25s linear infinite;
 }
-.onclic:after {
+.onclic:after
+{
   content: "";
 }
 .onclic:hover {
@@ -59,7 +62,8 @@
   background: white;
 }
 
-.validate {
+.validate
+{
   font-size: 13px;
   color: white;
   background: #1ECD97;
@@ -69,20 +73,26 @@
   content: "";
 }
 
-@-webkit-keyframes rotating {
-  from {
+@-webkit-keyframes rotating
+{
+  from
+  {
     transform: rotate(0deg);
   }
-  to {
+  to 
+  {
     transform: rotate(360deg);
   }
 }
 
-@keyframes rotating {
-  from {
+@keyframes rotating
+{
+  from
+  {
     transform: rotate(0deg);
   }
-  to {
+  to
+  {
     transform: rotate(360deg);
   }
 }

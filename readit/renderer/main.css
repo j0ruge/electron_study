@@ -1,7 +1,6 @@
 html, body
 {
-  height: 100%;
-   
+  height: 100%;   
 }
 
 body
@@ -20,7 +19,54 @@ button
   border: none;
   border-radius: 5px;
   font-size: 20px;
-  outline: none;  
+  outline: none;
+}
+
+#show-modal
+{
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#show-modal:after
+{
+  content: '';
+  position: absolute;
+  z-index: -1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#show-modal:before
+{
+  font-family: 'FontAwesome';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+#show-modal:hover
+{
+  background: #0077cc; 
+}
+
+#show-modal:active
+{
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  font-weight: 700;
 }
 
 input
