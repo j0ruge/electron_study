@@ -30,3 +30,9 @@ showModal.addEventListener('click', () =>
     modal.style.display = 'flex';
     itemUrl.focus();
 });
+
+closeModal.addEventListener('click', () =>
+{
+    modal.style.display = 'none';
+    itemUrl.value = '';
+});

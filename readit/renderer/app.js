@@ -1,21 +1,12 @@
 // Modules
 const {ipcRenderer} = require('electron');
 const items = require('./items');
-const { toggleModalButtons, showModal } = require('./modal')
+const { toggleModalButtons } = require('./modal')
 
 // DOM Nodes
-//let showModal = document.getElementById('show-modal');
-let closeModal = document.getElementById('close-modal');
-let modal = document.getElementById('modal');
+//let modal = document.getElementById('modal');
 let addItem = document.getElementById('add-item');
 let itemUrl = document.getElementById('url');
-
-// Close modal
-closeModal.addEventListener('click', () =>
- {
-    modal.style.display = 'none';
-    itemUrl.value = '';
-});
 
 // Handle new item  
 addItem.addEventListener('click', () =>
