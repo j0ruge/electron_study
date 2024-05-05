@@ -1,7 +1,7 @@
 // Modules
 const {ipcRenderer} = require('electron');
 const items = require('./items');
-const { toggleModalButtons } = require('./modal')
+const { toggleModalButtons } = require('./modal');
 
 // DOM Nodes
 //let modal = document.getElementById('modal');
