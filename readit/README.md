@@ -15,6 +15,10 @@ npm i electron-window-state
 
 [20 css buttons animations](https://dev.to/webdeasy/top-20-css-buttons-animations-f41)
 
+## Tutorials
+
+[Using data attributes](https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes)
+
 ## Troubleshootings
 
 ### Electron: jQuery is not defined
