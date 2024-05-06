@@ -39,6 +39,7 @@ function createWindow ()
     }
   });  
 
+  mainWindow.setMenuBarVisibility(false);
   // Load index.html into the new BrowserWindow
   mainWindow.loadFile('renderer/main.html')
 

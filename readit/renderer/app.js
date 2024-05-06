@@ -1,33 +1,14 @@
 // Modules
 const {ipcRenderer} = require('electron');
 const items = require('./items');
-const { toggleModalButtons } = require('./modal');
-
-// DOM Nodes
-//let modal = document.getElementById('modal');
-let addItem = document.getElementById('add-item');
-let itemUrl = document.getElementById('url');
-
-// Handle new item  
-addItem.addEventListener('click', () =>
-{
-    //Check if URL is provided
-    if(itemUrl.value)
-    {
-       // Send new item URL to the main process
-       ipcRenderer.send('new-item', itemUrl.value);
-
-       // Disable buttons
-       toggleModalButtons();
-    }
-});    
-
+const { toggleModalButtons, itemUrl } = require('./modal');
+const addItem = require('./header');
 
 // Listen for new item from main process
 ipcRenderer.on('new-item-success', (event, newItem) =>
 {
     // Add item to "items" node
-    items.addItem(newItem);
+    items.addItem(newItem, true);
 
     // Enable buttons
     toggleModalButtons();
@@ -35,12 +16,6 @@ ipcRenderer.on('new-item-success', (event, newItem) =>
     // Hide modal and clear value
     modal.style.display = 'none';
     itemUrl.value = '';
-});
-
-// Listen for keyboard submit
-itemUrl.addEventListener('keyup', (event) =>
-{
-    if(event.key === 'Enter') addItem.click();
 });
 
 document.addEventListener("DOMContentLoaded", () =>
