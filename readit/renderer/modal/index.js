@@ -39,7 +39,7 @@ showModal.addEventListener('click', () =>
 
 closeModal.addEventListener('click', () =>
 {
-    this.modal.style.display = 'none';
+    modal.style.display = 'none';
     itemUrl.value = '';
 });
 

@@ -2,7 +2,16 @@
 const {ipcRenderer} = require('electron');
 const items = require('./items');
 const { toggleModalButtons, itemUrl } = require('./modal');
-const addItem = require('./header');
+require('./header');
+
+// Navigate item selection with up/down arrows
+document.addEventListener('keydown', event =>
+{
+    if(event.key === 'ArrowUp' || event.key === 'ArrowDown')
+    {
+        items.changeSelection(event.key);
+    }
+});
 
 // Listen for new item from main process
 ipcRenderer.on('new-item-success', (event, newItem) =>
@@ -18,6 +27,8 @@ ipcRenderer.on('new-item-success', (event, newItem) =>
     itemUrl.value = '';
 });
 
+
+// Special Submit Button Animation
 document.addEventListener("DOMContentLoaded", () =>
 {    
    let button = document.getElementById("special-submit-button");
