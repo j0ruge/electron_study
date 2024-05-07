@@ -39,9 +39,21 @@ function createWindow ()
     }
   });  
 
+  // mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+  //   return {
+  //     action: 'allow',
+  //     overrideBrowserWindowOptions: {
+  //       webPreferences: {
+  //         preload: `${__dirname}/renderer/reader.js`
+  //       }
+  //     }
+  //   }
+  // });
+
   mainWindow.setMenuBarVisibility(false);
   // Load index.html into the new BrowserWindow
-  mainWindow.loadFile('renderer/main.html')
+  mainWindow.loadFile('renderer/main.html')  
+
 
   // Open DevTools - Remove for PRODUCTION!
   mainWindow.webContents.openDevTools();
