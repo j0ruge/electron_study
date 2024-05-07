@@ -1,5 +1,16 @@
+// Modules
+const fs = require('fs');
+const path = require('path');
+
 // DOM node
 let items = document.getElementById('items');
+
+// Get readerJS content
+let readerJS;
+fs.readFile(`${__dirname}${path.sep}reader.js`, (err, data) =>
+{
+    readerJS = data.toString();
+});
 
 //Track items in storage
 exports.storage = JSON.parse(localStorage.getItem('readit-items')) || [];
@@ -14,7 +25,6 @@ exports.save = () =>
 exports.select = event =>
 {
     const ACTUAL_SELECTION = document.getElementsByClassName('read-item selected')[0];
-
     // Remove currently selected item class
     ACTUAL_SELECTION.classList.remove('selected');
     // Add to clicked item
@@ -35,7 +45,19 @@ exports.open = () =>
     // Get item's URL
     let contentURL = selectedItem.dataset.url;
 
-    console.log(contentURL);
+    // Open item in proxy BrowserWindow
+    let readerWin = window.open(contentURL, '', `
+        maxWidth=2000, 
+        maxHeight=2000,
+        width=1200,
+        height=800,
+        backgroundColor=#DEDEDE,
+        nodeIntegration=0,
+        contextIsolation=1
+    `);
+
+    // Inject JavaScript
+    readerWin.eval(readerJS);
 }
 
 

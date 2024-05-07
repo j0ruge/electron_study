@@ -23,9 +23,11 @@ function createMainWindow ()
     slashes: true
   });
 
-  mainWindow.loadURL(startUrl);
+  // mainWindow.loadURL(startUrl);
 
   mainWindow.webContents.openDevTools();
+
+  mainWindow.loadFile('data-set-test.html');
 
 }
 
