@@ -40,7 +40,7 @@ function createWindow ()
     }
   });  
 
-  appMenu();
+  appMenu(mainWindow.webContents);
 
   // mainWindow.webContents.setWindowOpenHandler(({ url }) => {
   //   return {

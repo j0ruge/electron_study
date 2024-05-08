@@ -30,5 +30,9 @@ readitClose.onclick = event =>
 }
 
 
+// document.addEventListener("DOMContentLoaded", function(event) {
+//     document.getElementsByTagName('body')[0].append(readitClose);
+// }
+
 // Append button to body
 document.getElementsByTagName('body')[0].append(readitClose);

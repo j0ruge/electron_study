@@ -1,8 +1,44 @@
 // Modules
 const {ipcRenderer} = require('electron');
 const items = require('./items');
-const { toggleModalButtons, itemUrl } = require('./modal');
+const { toggleModalButtons, itemUrl, showModal } = require('./modal');
 require('./header');
+
+// open modal from menu
+ipcRenderer.on('menu-show-modal',() =>
+{
+  showModal.click();
+});
+
+// Open selected item from menu
+ipcRenderer.on('menu-open-item', () =>
+{
+  items.open();
+});
+
+// Delete selected item from menu
+
+ipcRenderer.on('menu-delete-item', () =>
+{
+  let selectedItem = items.getSelectedItem();
+  console.log(selectedItem);
+  console.log(`Index: ${selectedItem.index}`);
+  console.log(`Node: ${selectedItem.node}`);
+  items.delete(selectedItem.index);
+});
+
+// Open selected item in native browser from menu
+ipcRenderer.on('menu-open-item-native', () =>
+{
+  items.openNative();
+});
+
+// Focus the search input from menu
+ipcRenderer.on('menu-focus-search', () =>
+{
+  search.focus();
+});
+
 
 // Navigate item selection with up/down arrows
 document.addEventListener('keydown', event =>
@@ -29,26 +65,26 @@ ipcRenderer.on('new-item-success', (event, newItem) =>
 
 
 // Special Submit Button Animation
-document.addEventListener("DOMContentLoaded", () =>
-{    
-   let button = document.getElementById("special-submit-button");
+// document.addEventListener("DOMContentLoaded", () =>
+// {    
+//    let button = document.getElementById("special-submit-button");
     
-    button.addEventListener("click", function() {
-      button.classList.add("onclic");
-      setTimeout(validate, 250);
-    });
+//     button.addEventListener("click", function() {
+//       button.classList.add("onclic");
+//       setTimeout(validate, 250);
+//     });
   
-    function validate() {
-      setTimeout(function() {
-        button.classList.remove("onclic");
-        button.classList.add("validate");
-        setTimeout(callback, 450);
-      }, 2250);
-    }
+//     function validate() {
+//       setTimeout(function() {
+//         button.classList.remove("onclic");
+//         button.classList.add("validate");
+//         setTimeout(callback, 450);
+//       }, 2250);
+//     }
   
-    function callback() {
-      setTimeout(function() {
-        button.classList.remove("validate");
-      }, 1250);
-    }
-});
+//     function callback() {
+//       setTimeout(function() {
+//         button.classList.remove("validate");
+//       }, 1250);
+//     }
+// });

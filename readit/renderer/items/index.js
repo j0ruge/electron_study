@@ -1,6 +1,7 @@
 // Modules
 const fs = require('fs');
 const path = require('path');
+const { shell } = require('electron');
 
 // DOM node
 let items = document.getElementById('items');
@@ -48,8 +49,8 @@ exports.delete = itemIndex =>
     if(this.storage.length)
     {
         // Get new selected item index
-        let newSelectedItemIndex = (itemIndex === 0) ? 0 : itemIndex - 1;
-        console.log(newSelectedItemIndex);
+        let = newSelectedItemIndex = (itemIndex === 0) ? 0 : itemIndex - 1;
+        console.log(`New Selected Item: ${newSelectedItemIndex}`);
         // Set item at new index as selected
         document.getElementsByClassName('read-item')[newSelectedItemIndex].classList.add('selected');
     }
@@ -58,16 +59,16 @@ exports.delete = itemIndex =>
 // Get selected item index
 exports.getSelectedItem = () =>
 {
-    // Get selected node
-    let currentItem = document.getElementsByClassName('read-item selected')[0];
+  // Get selected node
+  let currentItem = document.getElementsByClassName('read-item selected')[0];
 
-    // Get item index
-    let itemIndex = 0;
-    let child = currentItem;
-    while((child = child.previousElementSibling) != null) itemIndex++;
+  // Get item index
+  let itemIndex = 0;
+  let child = currentItem;
+  while( (child = child.previousElementSibling) != null ) itemIndex++;
 
-    // Return selected item and index
-    return {node: currentItem, index: itemIndex};
+  // Return selected item and index
+  return { node: currentItem, index: itemIndex };
 }
 
 
@@ -81,18 +82,34 @@ exports.save = () =>
 exports.select = event =>
 {
   // Remove currently selected item class
-  this.getSelectedItem().node.classList.remove('selected')
+  this.getSelectedItem().node.classList.remove('selected');
 
   // Add to clicked item
-  event.currentTarget.classList.add('selected')
+  event.currentTarget.classList.add('selected');
+}
+
+// Open selected item in native browser
+
+exports.openNative = () =>
+{
+        // Only if we have items (in case of menu open)
+        if(!this.storage.length) return;
+
+        // Get selected item
+        let selectedItem = this.getSelectedItem();
+    
+        // Get item's URL
+        let contentURL = selectedItem.node.dataset.url;
+
+        // Open item in native browser
+        shell.openExternal(contentURL);
 }
 
 
 // Open selected item for reading
-
 exports.open = () =>
 {
-    // Only if items have been added
+    // Only if we have items (in case of menu open)
     if(!this.storage.length) return;
 
     // Get selected item
@@ -175,7 +192,6 @@ exports.addItem = (item, isNew = false) =>
 } 
 
 // Add items from storage when app loads
-
 this.storage.forEach(item =>
 {
     // this.addItem(item, false);

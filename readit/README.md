@@ -1,5 +1,8 @@
 # [Electron project Readit](https://github.com/stackacademytv/master-electron)
 
+>NOTE: Este projeto tem bugs para resolver, vamos usar a versão do curso, mas depois temos de fazer debbuger e encontrar o 
+
+
 Mantendo o estado das janelas.
 
 * [electron-window-state](https://www.npmjs.com/package/electron-window-state)
