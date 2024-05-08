@@ -2,6 +2,7 @@
 const {app, BrowserWindow, ipcMain } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const readItem = require('./read_item');
+const appMenu = require('./menu');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -39,6 +40,8 @@ function createWindow ()
     }
   });  
 
+  appMenu();
+
   // mainWindow.webContents.setWindowOpenHandler(({ url }) => {
   //   return {
   //     action: 'allow',
@@ -50,7 +53,7 @@ function createWindow ()
   //   }
   // });
 
-  mainWindow.setMenuBarVisibility(false);
+  // mainWindow.setMenuBarVisibility(true);
   // Load index.html into the new BrowserWindow
   mainWindow.loadFile('renderer/main.html')  
 
