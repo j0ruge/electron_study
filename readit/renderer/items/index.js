@@ -49,7 +49,7 @@ exports.delete = itemIndex =>
     {
         // Get new selected item index
         let newSelectedItemIndex = (itemIndex === 0) ? 0 : itemIndex - 1;
-
+        console.log(newSelectedItemIndex);
         // Set item at new index as selected
         document.getElementsByClassName('read-item')[newSelectedItemIndex].classList.add('selected');
     }
@@ -80,11 +80,11 @@ exports.save = () =>
 // Set item as selected
 exports.select = event =>
 {
-    const ACTUAL_SELECTION = document.getElementsByClassName('read-item selected')[0];
-    // Remove currently selected item class
-    this.getSelectedItem().node.classList.remove('selected');
-    // Add to clicked item
-    event.currentTarget.classList.add('selected');
+  // Remove currently selected item class
+  this.getSelectedItem().node.classList.remove('selected')
+
+  // Add to clicked item
+  event.currentTarget.classList.add('selected')
 }
 
 
@@ -154,18 +154,17 @@ exports.addItem = (item, isNew = false) =>
     // Append new node to "items"
     items.appendChild(itemNode);
 
-    // If this is the first item, select it
-    if(document.getElementsByClassName('read-item').length === 1)
-    {
-        itemNode.classList.add('selected');
-    }
-
-    // Attach click handler to select item
+        // Attach click handler to select item
     itemNode.addEventListener('click', this.select);
 
     // Attach double-click handler to open item
     itemNode.addEventListener('dblclick', this.open);
 
+    // If this is the first item, select it
+    if(document.getElementsByClassName('read-item').length === 1)
+    {
+        itemNode.classList.add('selected');
+    }
 
     // Add item to storage and persist
     if(isNew)
@@ -179,5 +178,6 @@ exports.addItem = (item, isNew = false) =>
 
 this.storage.forEach(item =>
 {
-    this.addItem(item, false);
+    // this.addItem(item, false);
+    this.addItem(item)
 });

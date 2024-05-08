@@ -1,4 +1,4 @@
-# Electron project Readit
+# [Electron project Readit](https://github.com/stackacademytv/master-electron)
 
 Mantendo o estado das janelas.
 
