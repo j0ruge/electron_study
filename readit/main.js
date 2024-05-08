@@ -65,7 +65,7 @@ function createWindow ()
 
 
   // Open DevTools - Remove for PRODUCTION!
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
  // Manage new window state
   state.manage(mainWindow);

@@ -1,26 +1,55 @@
 {
-  "name": "master-electron",
+  "name": "Readit",
   "version": "1.0.0",
-  "description": "Master Electron Course Code",
+  "description": "Master Electron Readit Project",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "watch": "npx electronmon --trace-warnings ."
+    "watch": "npx electronmon --trace-warnings .",
+    "build": "electron-builder",
+    "win-cert": "electron-builder create-self-signed-cert -p ChewieSoft"
   },
   "repository": "https://github.com/stackacademytv/master-electron",
+  "homepage": "https://jrcbrasil.com",
   "keywords": [
     "Electron",
     "Master Electron",
     "demo"
   ],
-  "author": "GitHub, Stackacademytv",
+  "author": "GabirU Rider",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.0.0",
+    "electron-builder": "^24.13.3",
     "nodemon": "^2.0.0"
   },
   "dependencies": {
     "electron-window-state": "^5.0.3",
     "jquery": "^3.7.1"
+  },
+  "build":
+  {
+    "appId": "com.jrcbrasil.readit",
+    "productName": "Readit",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": "dmg",
+      "icon": "build/icon.icns"
+    },
+    "win": {      
+      "icon": "build/icon.ico",
+      "certificateFile": "private/ChewieSoft.pfx",
+      "certificatePassword": "",       
+      "verifyUpdateCodeSignature": true,
+      "publisherName": "ChewieSoft"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility",
+      "icon": "build/icon.png"
+    }
   }
 }
