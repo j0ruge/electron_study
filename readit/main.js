@@ -38,20 +38,26 @@ function createWindow ()
       //contextIsolation: false,
       nodeIntegration: true
     }
-  });  
+  });
+  
+  
+  // setWindowsOpenHandler
+  
+//   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+//     return {
+//       action: 'allow',
+//       overrideBrowserWindowOptions: {
+//         webPreferences: {
+//           preload: `${__dirname}/renderer/reader.js`
+//         }
+//       }
+//     }
+// });
+
 
   appMenu(mainWindow.webContents);
 
-  // mainWindow.webContents.setWindowOpenHandler(({ url }) => {
-  //   return {
-  //     action: 'allow',
-  //     overrideBrowserWindowOptions: {
-  //       webPreferences: {
-  //         preload: `${__dirname}/renderer/reader.js`
-  //       }
-  //     }
-  //   }
-  // });
+
 
   // mainWindow.setMenuBarVisibility(true);
   // Load index.html into the new BrowserWindow

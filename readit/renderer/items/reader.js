@@ -1,5 +1,4 @@
 // Create button in remote content to mark item as "Done"
-
 let readitClose = document.createElement('div');
 readitClose.innerText = 'Done';
 
@@ -16,7 +15,6 @@ readitClose.style.borderRadius = '5px';
 readitClose.style.cursor = 'default';
 readitClose.style.boxShadow = '2px 2px 2px rgba(0,0,0,0.2)';
 readitClose.style.zIndex = '9999';
-
 
 // Add click handler to button
 readitClose.onclick = event => 
