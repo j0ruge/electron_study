@@ -1,6 +1,8 @@
 // Modules
 const {app, BrowserWindow, ipcMain } = require('electron');
 const windowStateKeeper = require('electron-window-state');
+const updater = require('./updater');
+
 const readItem = require('./read_item');
 const appMenu = require('./menu');
 
@@ -21,6 +23,11 @@ ipcMain.on('new-item', (event, itemUrl) =>
 // Create a new BrowserWindow when `app` is ready
 function createWindow ()
 {
+
+  // Check for updates
+  setTimeout(updater, 3000);
+
+
   let state = windowStateKeeper(
     {
       defaultWidth: 500, 

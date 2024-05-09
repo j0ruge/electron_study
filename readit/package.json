@@ -1,22 +1,23 @@
 {
   "name": "Readit",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Master Electron Readit Project",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "watch": "npx electronmon --trace-warnings .",
-    "build": "electron-builder",
+    "build": "electron-builder -w",
+    "release": "electron-builder --win --publish onTagOrDraft",
     "win-cert": "electron-builder create-self-signed-cert -p ChewieSoft"
   },
-  "repository": "https://github.com/stackacademytv/master-electron",
+  "repository": "https://github.com/j0ruge/electron_study/",
   "homepage": "https://jrcbrasil.com",
   "keywords": [
     "Electron",
     "Master Electron",
     "demo"
   ],
-  "author": "GabirU Rider",
+  "author": "ChewieSoft",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^9.0.0",
@@ -24,13 +25,19 @@
     "nodemon": "^2.0.0"
   },
   "dependencies": {
+    "electron-log": "^5.1.4",
+    "electron-updater": "^6.1.8",
     "electron-window-state": "^5.0.3",
     "jquery": "^3.7.1"
   },
-  "build":
-  {
+  "build": {
     "appId": "com.jrcbrasil.readit",
     "productName": "Readit",
+    "publish": {
+      "provider": "github",
+      "owner": "j0ruge",
+      "repo": "electron_study"
+    },
     "directories": {
       "output": "dist"
     },
@@ -39,10 +46,10 @@
       "target": "dmg",
       "icon": "build/icon.icns"
     },
-    "win": {      
+    "win": {
       "icon": "build/icon.ico",
       "certificateFile": "private/ChewieSoft.pfx",
-      "certificatePassword": "",       
+      "certificatePassword": "",
       "verifyUpdateCodeSignature": true,
       "publisherName": "ChewieSoft"
     },
