@@ -2,11 +2,11 @@ const { ipcRenderer, contextBridge } = require("electron");
  
 contextBridge.exposeInMainWorld("electron",
 {
-  submitVideo: (filePath) =>
+  submitVideo: filePath =>
   {
     ipcRenderer.send("video:submit", filePath);
   },
-  receiveVideoMetadata: (onMetadataReceived) =>
+  receiveVideoMetadata: onMetadataReceived =>
   {
     ipcRenderer.on("video:metadata", (event, duration) =>
     {

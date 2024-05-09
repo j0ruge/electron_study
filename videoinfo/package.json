@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "electron": "electron src/"
+    "electron": "electron src/",
+    "watch": "electronmon src/"
   },
   "keywords": [],
-  "author": "GarirU Rider",
+  "author": "ChewieSoft",
   "license": "ISC",
   "dependencies": {
     "electron": "^30.0.1",

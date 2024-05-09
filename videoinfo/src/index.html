@@ -12,16 +12,20 @@
   <h1 id="result"></h1>
  
   <script>
-    document.querySelector("form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const { path } = document.querySelector("input").files[0];
+
+    let tipo;
+    document.querySelector("form").addEventListener("submit", event =>
+    {      
+      event.preventDefault(); // Avoid the form to submit yourself
+      const { path, type } = document.querySelector("input").files[0];      
       window.electron.submitVideo(path);
+      tipo=type;
     });
  
-    window.electron.receiveVideoMetadata((duration) => {
-      document.querySelector(
-        "#result"
-      ).innerHTML = `Video is ${duration} seconds long.`;
+    window.electron.receiveVideoMetadata( duration =>
+    {
+      document.querySelector("#result")
+      .innerHTML = `The ${tipo} file is ${duration} seconds long.`;
     });
   </script>
 </body>
