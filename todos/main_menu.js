@@ -34,7 +34,7 @@ function createAddWindow()
     //addWindow.setMenuBarVisibility(false);
 
     // Carrega a interface do 'New Todo'
-    addWindow.loadFile(`${__dirname}${path.sep}add.html`);
+    addWindow.loadFile(`${__dirname}/add/index.html`);
     addWindow.webContents.openDevTools();
 }
 

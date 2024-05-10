@@ -7,8 +7,6 @@ let mainWindow;
 let webContent;
 let main_menu = Menu.buildFromTemplate(app_menu);
 
-
-
 app.on('ready', () =>
 {
     mainWindow = new BrowserWindow(
