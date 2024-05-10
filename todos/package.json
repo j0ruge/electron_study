@@ -1,0 +1,18 @@
+{
+  "name": "todos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch": "electronmon ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "electron": "^30.0.3"
+  },
+  "devDependencies": {
+    "electronmon": "^2.0.3"
+  }
+}
