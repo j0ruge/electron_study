@@ -1,10 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
-
-
-
-module.exports = [    
+const app_menu = [    
     {
         label: 'File',
         submenu: [            
@@ -34,7 +31,8 @@ function createAddWindow()
     });
 
     // Esconder a barra de Menu  nesta segunda janela. 
-    addWindow.setMenuBarVisibility(false);
+    //addWindow.setMenuBarVisibility(false);
+
     // Carrega a interface do 'New Todo'
     addWindow.loadFile(`${__dirname}${path.sep}add.html`);
     addWindow.webContents.openDevTools();
@@ -42,17 +40,24 @@ function createAddWindow()
 
 if (process.env.NODE_ENV !== 'production')
 {
-        this.push(
+    app_menu.push(
         {
         label: 'View', 
         submenu: [
             {
                 label: 'Toggle Developer Tool',
+                accelerator: process.platform == 'darwin' ? 'Command+Alt+I' : 'Ctrl+I',
                 click(item, focusedWindow)
                 {
-
+                    focusedWindow.toggleDevTools();
                 }
             }
         ]
         });  
+}
+
+
+module.exports = 
+{
+    app_menu
 }

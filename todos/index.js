@@ -1,10 +1,11 @@
 const electron = require('electron');
 const {app, BrowserWindow, Menu} = electron;
 const path = require('path');
+const { app_menu } = require('./main_menu')
 
 let mainWindow;
 let webContent;
-let main_menu = Menu.buildFromTemplate(require('./main_menu'));
+let main_menu = Menu.buildFromTemplate(app_menu);
 
 
 
