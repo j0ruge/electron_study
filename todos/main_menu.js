@@ -27,13 +27,14 @@ function createAddWindow()
     {
         width: 300, minWidth: 300, maxWidth: 300,
         height: 200, minHeight: 200, maxHeight: 200,
-        title: 'Add New Todo'
+        title: 'Add New Todo',
+        frame: true,
     });
 
     // Esconder a barra de Menu  nesta segunda janela. 
     //addWindow.setMenuBarVisibility(false);
 
-    // Carrega a interface do 'New Todo'
+    // Carrega a interface do 'New Todo'    
     addWindow.loadFile(`${__dirname}/add/index.html`);
     addWindow.webContents.openDevTools();
 }
