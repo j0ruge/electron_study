@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!--link rel="stylesheet" href="main.css"-->
+    <link href="./output.css" rel="stylesheet">
     <title>Todos</title>
 </head>
 <body>
-    <h1>Todos</h1>
-    
+    <!--h1 class="text-3xl font-bold">Todos</h1-->
+    <div class="p-6 max-w-sm 
+                mx-auto my-auto
+                bg-white 
+                rounded-xl
+                shadow-lg
+                flex
+                items-center
+                space-x-4
+    ">
+        <div class="shrink-0">
+        <img 
+            class="h-12 w-12"
+            src="./Assets/Emblem_of_the_First_Order.svg" alt="The First Order"
+        >
+        </div>
+        <div class="text-xl font-medium text-black">Todos</div>
+        <p class="text-slate-500">May you have things to do</p>
+    </div>
+   
 </body>
 </html>

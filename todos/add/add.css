@@ -3,10 +3,8 @@ body
     font-family: 'Roboto', sans-serif;
     background-color: #f0f0f0;
     diplay: flex;
-    flex-flow: column;
-    /* align-content: center; */
-    text-align: center;
-    /* margin: 10px; */
+    flex-flow: column;    
+    text-align: center;    
 }
 
 button
