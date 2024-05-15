@@ -1,7 +1,7 @@
 const electron = require('electron');
-const {app, BrowserWindow, Menu} = electron;
+const {app, BrowserWindow, Menu, ipcMain} = electron;
 const path = require('path');
-const { app_menu } = require('./main_menu')
+const { app_menu, addWindow } = require('./main_menu')
 
 let mainWindow;
 let webContent;
@@ -15,7 +15,7 @@ app.on('ready', () =>
         height: 600, minHeight: 480,
         webPreferences:
         {
-            nodeIntegration: false,
+            nodeIntegration: true,
             contextIsolation: true,
         }
     });
@@ -29,6 +29,9 @@ app.on('ready', () =>
     webContent = mainWindow.webContents;
     webContent.openDevTools();
 });
+
+
+
 
 // Main Menu
 if(process.platform === 'darwin')
