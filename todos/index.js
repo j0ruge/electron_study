@@ -26,7 +26,7 @@ const app_menu = [
             {
                 label: 'Clear Todos',
                 accelerator: process.platform === 'darwin' ? 'Command+D' : 'Ctrl+D',
-                click() {clearAllTodos()}
+                click: () => webContent.send('todo:delete_all')
             },
             {
                 label: 'Quit',
@@ -108,13 +108,7 @@ function createAddWindow()
     addWindow.on('closed', () => addWindow = null);
 }
 
-function clearAllTodos()
-{
-    webContent.send('todo:delete_all', () => 
-    {
-        console.log("Delete ALL Todos");
-    });
-}
+
 
 
 

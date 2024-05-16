@@ -24,6 +24,11 @@ contextBridge.exposeInMainWorld('electronAPI',
         
         li.appendChild(text);
         document.querySelector('ul').appendChild(li);
+    }),
+    deleteAllTodos: () => ipcRenderer.on('todo:delete_all', () =>
+    {
+        const ul = document.querySelector('ul');
+        ul.innerHTML = '';        
     })
 })
 

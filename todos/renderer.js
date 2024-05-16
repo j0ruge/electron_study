@@ -9,3 +9,5 @@ window.electronAPI.onUpdateCounter( (value) =>
 });
 
 window.electronAPI.addTodo();
+
+window.electronAPI.deleteAllTodos();
