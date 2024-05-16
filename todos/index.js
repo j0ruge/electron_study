@@ -1,5 +1,4 @@
-const electron = require('electron');
-const {app, BrowserWindow, Menu, ipcMain} = electron;
+const {app, BrowserWindow, Menu, ipcMain} = require('electron/main');
 const path = require('path');
 
 let mainWindow;
@@ -11,7 +10,15 @@ const app_menu = [
     {
         label: 'File',
         submenu:
-        [            
+        [    
+            {
+                label: 'Increment',
+                click:  () =>   mainWindow.webContents.send('update-counter', 1)
+            },
+            {
+                label: 'Decrement',
+                click:  () =>   mainWindow.webContents.send('update-counter', -1)
+            },        
             {
                 label: 'New Todo',
                 click() {createAddWindow()}
@@ -63,9 +70,10 @@ app.on('ready', () =>
         height: 600, minHeight: 480,
         webPreferences:
         {
+            preload: path.join(__dirname, './preload.js'),
             nodeIntegration: true,
-            contextIsolation: false,
-        }
+            contextIsolation: true,
+        }                
     });
 
     // Carrega a interface da Main
@@ -74,7 +82,12 @@ app.on('ready', () =>
     // Fecha toda a aplicação de a Main for fechada. 
     mainWindow.on('close', () => app.quit());
 
-    webContent = mainWindow.webContents;    
+    webContent = mainWindow.webContents;
+    
+    ipcMain.on('counter-value', (_event, value) => 
+    {
+        console.log(value);
+    })
 });
 
 function createAddWindow()
@@ -94,6 +107,17 @@ function createAddWindow()
     addWindow.loadURL(`file://${__dirname}${path.sep}add${path.sep}index.html`);
     addWindow.on('closed', () => addWindow = null);
 }
+
+function clearAllTodos()
+{
+    webContent.send('todo:delete_all', () => 
+    {
+        console.log("Delete ALL Todos");
+    });
+}
+
+
+
 
 ipcMain.on('todo:add', (event, todo) => 
 {   console.log(todo);

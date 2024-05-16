@@ -36,21 +36,26 @@
     ">
     <li class="shadow-sm">List</li>
     </ul>
+    <p class="m-6 mx-auto
+              p-6 max-w-sm
+              flex-auto  
+    ">Current value: <strong id="counter">0</strong></p>
 
     <script>
-        const electron = require('electron');
-        const { ipcRenderer } = electron;
+        // const electron = require('electron');
+        // const { ipcRenderer } = electron;
 
-        ipcRenderer.on('todo:add', (event, todo) => 
-        {
-            console.log(todo);
-            const li = document.createElement('li');
-            const text = document.createTextNode(todo);
+        // ipcRenderer.on('todo:add', (event, todo) => 
+        // {
+        //     console.log(todo);
+        //     const li = document.createElement('li');
+        //     const text = document.createTextNode(todo);
             
-            li.appendChild(text);
-            document.querySelector('ul').appendChild(li);
-        })
+        //     li.appendChild(text);
+        //     document.querySelector('ul').appendChild(li);
+        // })
     </script>
+    <script src="./renderer.js"></script>
    
 </body>
 </html>
