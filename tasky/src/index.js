@@ -7,9 +7,10 @@ import App from "./components/App";
 ReactDOM.render(
   <Router>
     <Route
-      component={() => (
-        <App />
-      )}
+      component=
+      {
+        () => (<App />)
+      }
     />
   </Router>,
   document.getElementById("root")

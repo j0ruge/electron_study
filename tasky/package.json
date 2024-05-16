@@ -5,11 +5,13 @@
   "main": "main.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "electron": "electron ."
+    "electron": "electron .",
+    "watch": "electronmon ."
   },
   "author": "Rallycoding",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "~1.6.2",
+    "electronmon": "^2.0.3"
   },
   "dependencies": {
     "babel-core": "^6.24.0",
