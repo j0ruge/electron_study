@@ -1,5 +1,4 @@
-const electron = require('electron');
-const {app, BrowserWindow, Menu, ipcMain} = electron;
+const {app, BrowserWindow, Menu, ipcMain} = require('electron/main');
 const path = require('path');
 
 let mainWindow;
@@ -11,15 +10,14 @@ const app_menu = [
     {
         label: 'File',
         submenu:
-        [            
+        [    
             {
                 label: 'New Todo',
                 click() {createAddWindow()}
             },
             {
                 label: 'Clear Todos',
-                accelerator: process.platform === 'darwin' ? 'Command+D' : 'Ctrl+D',
-                click() {clearAllTodos()}
+                click: () => webContent.send('todo:clear')                
             },
             {
                 label: 'Quit',
@@ -53,8 +51,6 @@ if (process.env.NODE_ENV !== 'production')
     });  
 }
 
-let main_menu = Menu.buildFromTemplate(app_menu);
-
 app.on('ready', () =>
 {
     mainWindow = new BrowserWindow(
@@ -63,9 +59,10 @@ app.on('ready', () =>
         height: 600, minHeight: 480,
         webPreferences:
         {
-            nodeIntegration: true,
-            contextIsolation: false,
-        }
+            preload: path.join(__dirname, './preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true,
+        }                
     });
 
     // Carrega a interface da Main
@@ -74,7 +71,11 @@ app.on('ready', () =>
     // Fecha toda a aplicação de a Main for fechada. 
     mainWindow.on('close', () => app.quit());
 
-    webContent = mainWindow.webContents;    
+    // Set Menu
+    const main_menu = Menu.buildFromTemplate(app_menu);
+    Menu.setApplicationMenu(main_menu);
+
+    webContent = mainWindow.webContents;
 });
 
 function createAddWindow()
@@ -85,8 +86,9 @@ function createAddWindow()
         height: 200, minHeight: 200, maxHeight: 200,
         title: 'Add New Todo',        
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false
+            preload: path.join(__dirname, './preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true
         },
     });
 
@@ -96,7 +98,7 @@ function createAddWindow()
 }
 
 ipcMain.on('todo:add', (event, todo) => 
-{   console.log(todo);
+{   
     webContent.send('todo:add', todo);    
     addWindow.close();
 });
@@ -107,4 +109,3 @@ if(process.platform === 'darwin')
     main_menu.unshift({label: ""});
 };
 
-Menu.setApplicationMenu(main_menu);

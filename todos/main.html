@@ -30,27 +30,38 @@
 
     </div>
 
-    <ul class="m-6 mx-auto
-               p-6 max-w-sm
+    <p class="m-6 mx-auto
+              p-0 max-w-sm
+              flex-auto
+              shadow  
+    ">List</p>
+    <ul class="mx-auto
+               max-w-sm
                flex-auto  
-    ">
-    <li class="shadow-sm">List</li>
-    </ul>
+    "><li></li></ul>
+
+    <!-- <p class="m-6 mx-auto
+              p-6 max-w-sm
+              flex-auto  
+    ">Current value: <strong id="counter">0</strong></p> -->
 
     <script>
-        const electron = require('electron');
-        const { ipcRenderer } = electron;
+        const list = document.querySelector('ul');
 
-        ipcRenderer.on('todo:add', (event, todo) => 
-        {
-            console.log(todo);
+        window.api.on('todo:add', todo => 
+        {            
             const li = document.createElement('li');
-            const text = document.createTextNode(todo);
-            
+            const text = document.createTextNode(todo);            
             li.appendChild(text);
-            document.querySelector('ul').appendChild(li);
+            list.appendChild(li);
+        })
+
+        window.api.on('todo:clear', () =>
+        {
+            list.innerHTML = '';
         })
     </script>
+    <!-- <script src="./renderer.js"></script> -->
    
 </body>
 </html>
