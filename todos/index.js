@@ -17,6 +17,11 @@ const app_menu = [
                 click() {createAddWindow()}
             },
             {
+                label: 'Clear Todos',
+                accelerator: process.platform === 'darwin' ? 'Command+D' : 'Ctrl+D',
+                click() {clearAllTodos()}
+            },
+            {
                 label: 'Quit',
                 accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
                 click()
@@ -35,6 +40,7 @@ if (process.env.NODE_ENV !== 'production')
         label: 'View', 
         submenu:
         [
+            { role: 'reload' },
             {
                 label: 'Toggle Developer Tool',
                 accelerator: process.platform == 'darwin' ? 'Command+Alt+I' : 'Ctrl+Alt+I',
@@ -58,7 +64,7 @@ app.on('ready', () =>
         webPreferences:
         {
             nodeIntegration: true,
-            contextIsolation: true,
+            contextIsolation: false,
         }
     });
 

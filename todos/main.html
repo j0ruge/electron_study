@@ -26,9 +26,31 @@
         <div>
             <div class="text-xl font-medium text-black">Todos</div>
             <p class="text-slate-500">May you have things to do</p>
-        </div>
+        </div>      
 
     </div>
+
+    <ul class="m-6 mx-auto
+               p-6 max-w-sm
+               flex-auto  
+    ">
+    <li class="shadow-sm">List</li>
+    </ul>
+
+    <script>
+        const electron = require('electron');
+        const { ipcRenderer } = electron;
+
+        ipcRenderer.on('todo:add', (event, todo) => 
+        {
+            console.log(todo);
+            const li = document.createElement('li');
+            const text = document.createTextNode(todo);
+            
+            li.appendChild(text);
+            document.querySelector('ul').appendChild(li);
+        })
+    </script>
    
 </body>
 </html>
