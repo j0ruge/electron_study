@@ -1,16 +1,17 @@
 const electron = require('electron');
 const {app, BrowserWindow, Menu, ipcMain} = electron;
 const path = require('path');
-// const { app_menu } = require('./main_menu')
 
 let mainWindow;
 let webContent;
 let addWindow;
 
-const app_menu = [    
+// App Menu
+const app_menu = [
     {
         label: 'File',
-        submenu: [            
+        submenu:
+        [            
             {
                 label: 'New Todo',
                 click() {createAddWindow()}
@@ -28,22 +29,23 @@ const app_menu = [
 ]
 
 if (process.env.NODE_ENV !== 'production')
+{
+    app_menu.push(
     {
-        app_menu.push(
+        label: 'View', 
+        submenu:
+        [
             {
-            label: 'View', 
-            submenu: [
+                label: 'Toggle Developer Tool',
+                accelerator: process.platform == 'darwin' ? 'Command+Alt+I' : 'Ctrl+Alt+I',
+                click(item, focusedWindow)
                 {
-                    label: 'Toggle Developer Tool',
-                    accelerator: process.platform == 'darwin' ? 'Command+Alt+I' : 'Ctrl+I',
-                    click(item, focusedWindow)
-                    {
-                        focusedWindow.toggleDevTools();
-                    }
+                    focusedWindow.toggleDevTools();
                 }
-            ]
-            });  
-    }
+            }
+        ]
+    });  
+}
 
 let main_menu = Menu.buildFromTemplate(app_menu);
 
@@ -66,8 +68,7 @@ app.on('ready', () =>
     // Fecha toda a aplicação de a Main for fechada. 
     mainWindow.on('close', () => app.quit());
 
-    webContent = mainWindow.webContents;
-    // webContent.openDevTools();
+    webContent = mainWindow.webContents;    
 });
 
 function createAddWindow()
@@ -84,15 +85,9 @@ function createAddWindow()
     });
 
     // Carrega a interface do 'New Todo'    
-    // addWindow.loadFile(`${__dirname}/add/index.html`);
     addWindow.loadURL(`file://${__dirname}${path.sep}add${path.sep}index.html`);
-    addWindow.on('closed', () => (addWindow = null));
-    //addWindow.webContents.openDevTools();
-
-    // Esconder a barra de Menu  nesta segunda janela. 
-    //addWindow.setMenuBarVisibility(false);
+    addWindow.on('closed', () => addWindow = null);
 }
-
 
 ipcMain.on('todo:add', (event, todo) => 
 {   console.log(todo);
@@ -100,18 +95,10 @@ ipcMain.on('todo:add', (event, todo) =>
     addWindow.close();
 });
 
-
 // Main Menu
 if(process.platform === 'darwin')
 {
     main_menu.unshift({label: ""});
 };
 
-
-
 Menu.setApplicationMenu(main_menu);
-
-module.exports =
-{
-    createAddWindow
-}
