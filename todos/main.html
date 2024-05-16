@@ -46,21 +46,17 @@
     ">Current value: <strong id="counter">0</strong></p> -->
 
     <script>
-        const electron = require('electron');
-        const { ipcRenderer } = electron;
         const list = document.querySelector('ul');
 
-        ipcRenderer.on('todo:add', (event, todo) => 
-        {
-            console.log(todo);
+        window.api.on('todo:add', todo => 
+        {            
             const li = document.createElement('li');
-            const text = document.createTextNode(todo);
-            
+            const text = document.createTextNode(todo);            
             li.appendChild(text);
             list.appendChild(li);
         })
 
-        ipcRenderer.on('todo:clear', () =>
+        window.api.on('todo:clear', () =>
         {
             list.innerHTML = '';
         })

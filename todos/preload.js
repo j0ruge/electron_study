@@ -1,16 +1,16 @@
 const { contextBridge, ipcRenderer } = require('electron/renderer');
 
-// contextBridge.exposeInMainWorld('api', 
-// {
-//     send: (channel, data) =>
-//     {
-//         ipcRenderer.send(channel, data);
-//     },
-//     on: ( channel, callback) =>
-//     {
-//         ipcRenderer.on(channel, (event, ...args) => callback(...args));
-//     }
-// });
+contextBridge.exposeInMainWorld('api', 
+{
+    send: (channel, data) =>
+    {
+        ipcRenderer.send(channel, data);
+    },
+    on: ( channel, callback) =>
+    {
+        ipcRenderer.on(channel, (event, ...args) => callback(...args));
+    }
+});
 
 contextBridge.exposeInMainWorld('electronAPI',
 {
@@ -31,13 +31,3 @@ contextBridge.exposeInMainWorld('electronAPI',
         ul.innerHTML = '';        
     })
 })
-
-        // ipcRenderer.on('todo:add', (event, todo) => 
-        // {
-        //     console.log(todo);
-        //     const li = document.createElement('li');
-        //     const text = document.createTextNode(todo);
-            
-        //     li.appendChild(text);
-        //     document.querySelector('ul').appendChild(li);
-        // })

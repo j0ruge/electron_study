@@ -11,23 +11,10 @@ const app_menu = [
         label: 'File',
         submenu:
         [    
-            // {
-            //     label: 'Increment',
-            //     click:  () =>   mainWindow.webContents.send('update-counter', 1)
-            // },
-            // {
-            //     label: 'Decrement',
-            //     click:  () =>   mainWindow.webContents.send('update-counter', -1)
-            // },        
             {
                 label: 'New Todo',
                 click() {createAddWindow()}
             },
-            // {
-            //     label: 'Clear Todos',
-            //     accelerator: process.platform === 'darwin' ? 'Command+D' : 'Ctrl+D',
-            //     click: () => webContent.send('todo:delete_all')
-            // },
             {
                 label: 'Clear Todos',
                 click: () => webContent.send('todo:clear')                
@@ -64,8 +51,6 @@ if (process.env.NODE_ENV !== 'production')
     });  
 }
 
-let main_menu = Menu.buildFromTemplate(app_menu);
-
 app.on('ready', () =>
 {
     mainWindow = new BrowserWindow(
@@ -74,9 +59,9 @@ app.on('ready', () =>
         height: 600, minHeight: 480,
         webPreferences:
         {
-            // preload: path.join(__dirname, './preload.js'),
-            nodeIntegration: true,
-            contextIsolation: false,
+            preload: path.join(__dirname, './preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true,
         }                
     });
 
@@ -86,12 +71,11 @@ app.on('ready', () =>
     // Fecha toda a aplicação de a Main for fechada. 
     mainWindow.on('close', () => app.quit());
 
+    // Set Menu
+    const main_menu = Menu.buildFromTemplate(app_menu);
+    Menu.setApplicationMenu(main_menu);
+
     webContent = mainWindow.webContents;
-    
-    ipcMain.on('counter-value', (_event, value) => 
-    {
-        console.log(value);
-    })
 });
 
 function createAddWindow()
@@ -102,8 +86,9 @@ function createAddWindow()
         height: 200, minHeight: 200, maxHeight: 200,
         title: 'Add New Todo',        
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false
+            preload: path.join(__dirname, './preload.js'),
+            nodeIntegration: false,
+            contextIsolation: true
         },
     });
 
@@ -112,9 +97,8 @@ function createAddWindow()
     addWindow.on('closed', () => addWindow = null);
 }
 
-
 ipcMain.on('todo:add', (event, todo) => 
-{   console.log(todo);
+{   
     webContent.send('todo:add', todo);    
     addWindow.close();
 });
@@ -125,4 +109,3 @@ if(process.platform === 'darwin')
     main_menu.unshift({label: ""});
 };
 
-Menu.setApplicationMenu(main_menu);

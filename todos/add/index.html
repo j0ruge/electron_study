@@ -14,18 +14,12 @@
         <button type="submit">Add</button>
     </form>
 </body>
-<script>
-    const electron = require('electron');
-    const { ipcRenderer } = electron;
-    
+<script>    
     document.querySelector('form').addEventListener('submit', event =>
     {
         event.preventDefault();
-
-        const { value } = document.querySelector('input');       
-        
-        ipcRenderer.send('todo:add', value);
-        
+        const { value } = document.querySelector('input');        
+        window.api.send('todo:add', value);        
     });
 </script>
 </html>
