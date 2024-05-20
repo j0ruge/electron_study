@@ -20,11 +20,20 @@ app.on('ready', () =>
     const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
     const iconPath = path.join(__dirname, `.${path.sep}src${path.sep}assets${path.sep}${iconName}`);
 
-
     tray = new Tray(iconPath);
     tray.on('click', () =>
     {
-        mainWindow.show();
+        
+        mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+        // if (mainWindow.isVisible())
+        // {
+
+        // }
+        // else 
+        // {
+
+        // }
+        // mainWindow.show();
     });
 });
 
