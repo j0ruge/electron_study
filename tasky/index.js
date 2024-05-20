@@ -12,7 +12,8 @@ app.on('ready', () =>
         height: 500,
         width: 300,
         frame: false,
-        resizable: false
+        resizable: false,
+        show: false        
     });
     mainWindow.loadURL(`file://${__dirname}${path.sep}src${path.sep}/index.html`);
 
@@ -21,7 +22,10 @@ app.on('ready', () =>
 
 
     tray = new Tray(iconPath);
-
+    tray.on('click', () =>
+    {
+        mainWindow.show();
+    });
 });
 
  
