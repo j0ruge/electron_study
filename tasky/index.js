@@ -14,7 +14,14 @@ app.on('ready', () =>
         frame: false,
         resizable: false
     });
-    mainWindow.loadURL(`file://${__dirname}${path.sep}src${path.sep}/index.html`)
+    mainWindow.loadURL(`file://${__dirname}${path.sep}src${path.sep}/index.html`);
+
+    const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
+    const iconPath = path.join(__dirname, `.${path.sep}src${path.sep}assets${path.sep}${iconName}`);
+
+
+    tray = new Tray(iconPath);
+
 });
 
-// tray = new Tray('');
+ 
