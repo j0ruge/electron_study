@@ -18,7 +18,7 @@ In a new terminal window:
 
 * `onClick` => Make sure the on click event handler gets set up here too!
 
-1. Create /app/timer_tray.js class
+1. Create `/app/timer_tray.js` class
 
 ```js
 const electron = require('electron');
@@ -36,3 +36,4 @@ module.exports = TimerTray;
 
 ```
 
+// 60. Finishing TimerTray Refactor
