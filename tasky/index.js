@@ -1,5 +1,5 @@
 const electron = require('electron');
-const { app } = electron;
+const { app, ipcMain } = electron;
 const path = require('path');
 const TimerTray = require('./app/timer_tray')
 const MainWindow = require('./app/main_window')
@@ -24,3 +24,9 @@ function hideAppIcon()
 {
     process.platform === 'darwin' ? app.dock.hide() : mainWindow.setSkipTaskbar(true); // Esconde o icone no dock 
 }
+
+
+ipcMain.on('update-timer', (event, timeLeft) =>
+{
+    tray.setTitle(timeLeft);
+})

@@ -82,3 +82,8 @@ class TimerTray extends Tray
 
 module.exports = TimerTray;
 ```
+
+## React Timer <-> Electron
+
+
+![](/Assets/react_ipc_electron.png)
