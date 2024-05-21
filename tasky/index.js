@@ -7,7 +7,7 @@ let mainWindow;
 let tray;
 
 app.on('ready', () => 
-{
+{    
     mainWindow = new BrowserWindow(
     {
         height: 500,
@@ -20,7 +20,9 @@ app.on('ready', () =>
     mainWindow.on('blur', () => 
     {
         mainWindow.hide();
-    })
+    });
+    
+    hideAppIcon();
 
     const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
     const iconPath = path.join(__dirname, `.${path.sep}src${path.sep}assets${path.sep}${iconName}`);
@@ -29,4 +31,7 @@ app.on('ready', () =>
 
 });
 
- 
+function hideAppIcon()
+{
+    process.platform === 'darwin' ? app.dock.hide() : mainWindow.setSkipTaskbar(true); // Esconde o icone no dock 
+}
