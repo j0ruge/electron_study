@@ -1,6 +1,7 @@
 const electron = require('electron');
-const { app, BrowserWindow, Tray } = electron;
+const { app, BrowserWindow } = electron;
 const path = require('path');
+const TimerTray = require('./app/timer_tray')
 
 let mainWindow;
 let tray;
@@ -21,7 +22,7 @@ app.on('ready', () =>
     const iconName = process.platform === 'win32' ? 'windows-icon.png' : 'iconTemplate.png';
     const iconPath = path.join(__dirname, `.${path.sep}src${path.sep}assets${path.sep}${iconName}`);
 
-    tray = new Tray(iconPath);
+    tray = new TimerTray(iconPath);
     tray.on('click', (event, bounds) =>
     {        
         // Click event bounds
