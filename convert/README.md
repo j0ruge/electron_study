@@ -29,3 +29,22 @@ Drag and dDrop possível via `ReactDropzone`
 ### Algorithm
 
 ![algoritmo](./Assets/algoritmo.png)
+
+
+### Handling Async Bulk Operations with Promises
+
+![async](./Assets/async_01.png)
+
+A coisa aperta quando temos vários asycn em paralelo.
+
+![async](./Assets/async_02.png)
+
+Usar o Promise.all, que é chamadod quando todas as tasks terminam.
+
+![Promise.all](./Assets/promise_all.png)
+
+## Instalação do fluent-ffmeg
+
+```bash
+npm install --save fluent-ffmpeg
+```
