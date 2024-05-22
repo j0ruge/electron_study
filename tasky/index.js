@@ -28,5 +28,5 @@ function hideAppIcon()
 
 ipcMain.on('update-timer', (event, timeLeft) =>
 {
-    tray.setTitle(timeLeft);
+    process.platform === 'darwin' ? tray.setTitle(timeLeft) : tray.setToolTip(timeLeft);
 })

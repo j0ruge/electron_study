@@ -12,7 +12,8 @@ class MainWindow extends BrowserWindow
             width: 300,
             frame: false,
             resizable: false,
-            show: false        
+            show: false,
+            webPreferences: { backgroundThrottling: false }        
         });
 
         this.on('blur', this.onBlur.bind(this));
@@ -23,8 +24,6 @@ class MainWindow extends BrowserWindow
     {
         this.hide();            
     }
-
-
 }
 
 module.exports = MainWindow;
