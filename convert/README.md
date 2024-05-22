@@ -9,3 +9,8 @@ Start dev server:
 In a new terminal window:
 
 `npm run electron`
+
+
+## App Architecture
+
+![](./Assets/convert_architecture.png)
