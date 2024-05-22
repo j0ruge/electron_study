@@ -1,4 +1,4 @@
-const { app } = require('electron');
+const { app, ipcMain } = require('electron');
 const path = require('path');
 const MainWindow = require('./app/main_window');
 
@@ -9,3 +9,8 @@ app.on('ready', () =>
 {
     mainWindow = new MainWindow(url);
 });
+
+ipcMain.on('videos:added', (event, videos) =>
+{
+    console.log(videos);
+})
