@@ -20,9 +20,28 @@ ipcMain.on("videos:added", (event, videos) =>
       {
         ffmpeg.ffprobe(video.path, (err, metadata) =>
         {
-          resolve(metadata);
+          video.duration = metadata.format.duration;
+          video.format = 'avi';
+          resolve(video);
         });
       });
     });
-    Promise.all(promises).then((results) => console.log(results));
+    Promise.all(promises)
+    .then((results) => 
+    {
+        mainWindow.webContents.send('metadata:complete', results)
+    });
 });
+
+ipcMain.on('convertion:start', (event, videos) => 
+{
+    const video = videos[0];
+    const outputDirectory = video.path.split(video.name)[0];
+    const outputName = video.name.split('.')[0];
+    const outputPath = `${outputDirectory}${outputName}.${video.format}`
+    console.log(outputPath);
+
+
+    // ffmpeg(video.path)
+    // .output();
+})
