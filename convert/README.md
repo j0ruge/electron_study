@@ -48,3 +48,7 @@ Usar o Promise.all, que é chamadod quando todas as tasks terminam.
 ```bash
 npm install --save fluent-ffmpeg
 ```
+
+### lodash
+
+> Biblioteca que ajuda a fazer iteração entre os irens de um array.

@@ -7,7 +7,6 @@ export const addVideos = videos => dispatch => {
   ipcRenderer.send('videos:added', videos);
 };
 
-
 // TODO: Communicate to MainWindow that the user wants
 // to start converting videos.  Also listen for feedback
 // from the MainWindow regarding the current state of
