@@ -7,9 +7,9 @@ import { ADD_VIDEO, ADD_VIDEOS, REMOVE_VIDEO, REMOVE_ALL_VIDEOS, VIDEO_PROGRESS,
 export const addVideos = videos => dispatch => {
   ipcRenderer.send('videos:added', videos);
   ipcRenderer.on('metadata:complete',(event, videosWithData) =>
-  {
-    dispatch({ type: ADD_VIDEOS, payload: videosWithData});
-  })
+    {
+      dispatch({ type: ADD_VIDEOS, payload: videosWithData});
+    })
 };
 
 // TODO: Communicate to MainWindow that the user wants
@@ -19,7 +19,12 @@ export const addVideos = videos => dispatch => {
 export const convertVideos = (videos) => (dispatch, getState) =>
 {
   const videos = _.map(getState().videos); 
-  ipcRenderer.send("convertion:start", videos);
+  ipcRenderer.send("conversion:start", videos);
+
+  ipcRenderer.on('conversion:end', (event, { video, outputPath}) =>
+    {
+      dispatch({ type: VIDEO_COMPLETE, payload: { ...video, outputPath } }); 
+    });
 };
 
 // TODO: Open the folder that the newly created video
