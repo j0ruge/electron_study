@@ -7,9 +7,15 @@ import { ADD_VIDEO, ADD_VIDEOS, REMOVE_VIDEO, REMOVE_ALL_VIDEOS, VIDEO_PROGRESS,
 export const addVideos = videos => dispatch => {
   ipcRenderer.send('videos:added', videos);
   ipcRenderer.on('metadata:complete',(event, videosWithData) =>
-    {
-      dispatch({ type: ADD_VIDEOS, payload: videosWithData});
-    })
+  {
+    dispatch({ type: ADD_VIDEOS, payload: videosWithData});
+  })
+
+  ipcRenderer.on('conversion:progress', ( event, { video, outputPath } ) => 
+  {
+    dispatch({ type: VIDEO_PROGRESS, payload: { ...video, timemark }});
+  });
+
 };
 
 // TODO: Communicate to MainWindow that the user wants
